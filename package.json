@@ -10,7 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@types/md5": "^2.3.5",
+    "md5": "^2.3.0",
     "nuxt": "^3.13.0",
     "vue": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/postcss8": "^1.1.3",
+    "@vant/nuxt": "^1.0.5",
+    "postcss": "^8.4.41",
+    "postcss-pxtorem": "^6.1.0",
+    "vant": "^4.9.4"
   }
 }

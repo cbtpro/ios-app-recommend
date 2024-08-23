@@ -1,0 +1,87 @@
+/* Classic CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* 包含 padding 和 border 在内的元素宽度和高度 */
+  margin: 0; /* 清除所有元素的默认外边距 */
+  padding: 0; /* 清除所有元素的默认内边距 */
+}
+
+html, body {
+  height: 100%; /* 确保 html 和 body 元素占满整个视口 */
+  font-family: sans-serif; /* 设置通用的无衬线字体 */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit; /* 确保标题标签使用继承的字体大小 */
+  font-weight: inherit; /* 确保标题标签使用继承的字体粗细 */
+  margin: 0; /* 清除标题标签的默认外边距 */
+}
+
+ul, ol {
+  list-style: none; /* 去掉列表的默认项目符号 */
+}
+
+a {
+  text-decoration: none; /* 去掉链接的下划线 */
+  color: inherit; /* 使链接颜色继承自父元素 */
+}
+
+table {
+  border-collapse: collapse; /* 合并表格边框 */
+  border-spacing: 0; /* 去掉表格单元格之间的间距 */
+}
+
+img {
+  max-width: 100%; /* 防止图片超出容器宽度 */
+  height: auto; /* 保持图片的纵横比 */
+}
+
+button {
+  background: none; /* 去掉按钮的默认背景 */
+  border: none; /* 去掉按钮的默认边框 */
+  cursor: pointer; /* 将鼠标指针设置为手型 */
+}
+
+input, textarea, select {
+  font: inherit; /* 确保表单元素的字体样式继承自父元素 */
+  margin: 0; /* 清除表单元素的默认外边距 */
+  padding: 0; /* 清除表单元素的默认内边距 */
+  border: none; /* 去掉表单元素的默认边框 */
+}
+
+body {
+  line-height: 1.5; /* 设置默认行高 */
+}
+
+/**
+* 一行超出省略
+*/
+.single-line-ellipsis {
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: hidden; /* 隐藏溢出的内容 */
+  text-overflow: ellipsis; /* 在溢出文本处显示省略号 */
+  display: block; /* 保持元素为块状 */
+}
+/**
+* 两行超出省略
+*/
+.two-line-ellipsis {
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: hidden; /* 隐藏溢出的内容 */
+  text-overflow: ellipsis; /* 在溢出文本处显示省略号 */
+  display: block; /* 保持元素为块状 */
+}
+/**
+* 三行超出省略
+*/
+.three-line-ellipsis {
+  display: -webkit-box; /* 将元素设置为弹性盒子模型 */
+  -webkit-box-orient: vertical; /* 设置盒子模型的子元素垂直排列 */
+  line-clamp: 3;
+  -webkit-line-clamp: 3; /* 限制显示三行 */
+  overflow: hidden; /* 隐藏溢出的内容 */
+  text-overflow: ellipsis; /* 在溢出文本处显示省略号 */
+}
+
+
