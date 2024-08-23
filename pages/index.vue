@@ -1,6 +1,8 @@
 <template>
   <div>
-    <CustomSearch />
+    <van-sticky>
+      <CustomSearch v-model="searchKey" />
+    </van-sticky>
     <RecommendedHeader>
       <template #title>
         <h1 class="title">
@@ -12,7 +14,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+/**
+ * 筛选关键词，支持应用名称、开发者名称、应用描述
+ * 全局状态管理
+ */
+const searchKey = useState('searchKey', () => '')
+
+</script>
 
 <style lang="scss" scoped>
 .title {
