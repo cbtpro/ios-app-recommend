@@ -6,6 +6,12 @@
 
 ## 开发指南
 
+- 复制.env.example 到.env，这里存放API请求地址。
+
+  ```sh
+  cp .env.example .env
+  ```
+
 - 使用 node v18
 - 安装依赖
   
