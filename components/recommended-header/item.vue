@@ -3,7 +3,7 @@
     <a :href="data.link[0].attributes.href">
       <img :src="data['im:image'][0].label" alt="data['im:image'][0].label" class="logo" />
       <h1 class="recommend-item-title single-line-ellipsis">{{ data["im:name"].label }}</h1>
-      <h2 class="recommend-item-sub-title">游戏</h2>
+      <h2 class="recommend-item-sub-title">{{ data.category.attributes.label }}</h2>
     </a>
   </div>
 </template>
@@ -40,6 +40,7 @@ defineProps<IProps>()
     color: #5b55558f;
     font-weight: 400;
     text-align: center;
+    text-wrap: nowrap;
   }
 }
 </style>

@@ -7,8 +7,11 @@ declare module IOSApp {
   }
 
   interface Result {
+    /** 截图 */
     screenshotUrls: string[];
+    /** ipad 截图 */
     ipadScreenshotUrls: string[];
+    /** apple tv 截图 */
     appletvScreenshotUrls: any[];
     artworkUrl60: string;
     artworkUrl512: string;
@@ -20,16 +23,21 @@ declare module IOSApp {
     advisories: string[];
     kind: string;
     currentVersionReleaseDate: Date;
+    /** 当前版本用户评分 */
     averageUserRatingForCurrentVersion: number;
+    /** 用户平均评分 */
     averageUserRating: number;
     trackCensoredName: string;
     languageCodesISO2A: string[];
     fileSizeBytes: string;
     sellerUrl: string;
     formattedPrice: string;
+    /** 内容咨询评级 */
     contentAdvisoryRating: string;
+    /** 当前版本的用户评分计数 */
     userRatingCountForCurrentVersion: number;
     trackViewUrl: string;
+    /** 曲目内容评级 */
     trackContentRating: string;
     releaseNotes: string;
     artistId: number;
@@ -50,6 +58,7 @@ declare module IOSApp {
     releaseDate: Date;
     version: string;
     wrapperType: string;
+    /** 用户评价计数 */
     userRatingCount: number;
   }
   /** IOS App 列表 */

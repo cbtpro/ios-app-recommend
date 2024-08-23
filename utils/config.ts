@@ -11,10 +11,11 @@
  */
 const useConfig = () => {
   // 获取应用程序的全局配置
-  const appConfig = useAppConfig();
+  // const appConfig = useAppConfig();
+  const appConfig = useRuntimeConfig()
 
   // 提取全局配置中的API配置部分
-  const { api } = appConfig;
+  const { api } = appConfig.public;
 
   /**
    * 构建API URL

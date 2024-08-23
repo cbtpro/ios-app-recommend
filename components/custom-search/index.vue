@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-const searchKey = ref('')
+const searchKey = useState('searchKey', () => '')
 </script>

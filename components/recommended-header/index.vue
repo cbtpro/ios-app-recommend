@@ -16,13 +16,12 @@
 </template>
 
 <script setup lang="ts">
-import { useAppRequest } from "@/composables/AppRequest";
 import useConfig from "@/utils/config";
 
 import Item from "./item.vue";
 
 defineOptions({
-  name: "Recommend",
+  name: "RecommendHeader",
 });
 
 const { api, buildApiUrl } = useConfig();

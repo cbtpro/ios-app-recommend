@@ -12,7 +12,7 @@ export const useGetAppleTopApps1 = (params: IUrlParams): any => {
 };
 export const useGetAppleTopApps = async (params: IUrlParams) => {
   const { api, buildApiUrl } = useConfig();
-  const topApps = ref([])
+  const topApps = useState('topApps', () => [])
   useAsyncData('topApps', () => useAppRequest.get(
     buildApiUrl(api.appleTopAppsUrl, params),
   ))

@@ -8,6 +8,7 @@
         </h1>
       </template>
     </RecommendedHeader>
+    <RecommendedList />
   </div>
 </template>
 
