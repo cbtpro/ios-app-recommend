@@ -2,10 +2,10 @@
   <div class="recommended-list">
     <div
       class="recommended-list-item"
-      v-for="item in freeApps?.feed.entry"
+      v-for="(item, index) in freeApps?.feed.entry"
       :key="item.id.label"
     >
-      <Item :data="item" :additional-datas="additionalDatas" />
+      <Item :index="index" :data="item" :additional-datas="additionalDatas" />
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ const {
   error,
   refresh,
 } = await useAsyncData<IOSApp.TopApps>("freeApps", async () => {
-  const url = buildApiUrl(api.appleTopFreeAppsUrl, { limit: 10 });
+  const url = buildApiUrl(api.appleTopFreeAppsUrl, { limit: 100 });
   const response = await $fetch(url);
   const data = JSON.parse(response as string) as IOSApp.TopApps;
   return data; // 将字符串解析为 JSON 对象
@@ -39,17 +39,17 @@ const {
   data: additionalDatas,
   error: additionalError,
   refresh: refreshAdditionalData,
-} = useAsyncData<IOSApp.AppDetail | null>(
+} = useAsyncData<IOSApp.AppDetail | undefined>(
   "additionalData",
   async () => {
     if (!freeApps.value) {
-      return null;
+      return undefined;
     }
     const ids = freeApps.value.feed.entry.map(
       (item) => item.id.attributes["im:id"]
     );
     if (!ids) {
-      return null;
+      return undefined;
     }
     const url = buildApiUrl(api.appleLookupApsUrl, {
       id: ids.filter((item) => !!item).join(","),
@@ -73,6 +73,11 @@ const {
   row-gap: 16px;
   flex-direction: column;
   .recommended-list-item {
+    &:nth-of-type(odd) {
+      ::v-deep .logo {
+        border-radius: 0px;
+      }
+    }
   }
 }
 </style>

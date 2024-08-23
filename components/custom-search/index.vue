@@ -1,5 +1,5 @@
 <template>
-  <van-search v-model="searchKey" placeholder="请输入搜索关键词" />
+  <van-search v-model="searchKey" placeholder="Search…" />
 </template>
 
 <script setup lang="ts">

@@ -2,6 +2,9 @@
   <div class="item">
     <a :href="data.link[0].attributes.href">
       <div class="info">
+        <div class="index">
+          <div class="text">{{ index + 1 }}</div>
+        </div>
         <img
           :src="data['im:image'][0].label"
           :alt="data['im:image'][0].label"
@@ -25,22 +28,26 @@
 
 <script setup lang="ts">
 interface IProps {
+  /** 索引 */
+  index: number;
   data: IOSApp.Entry;
-  additionalDatas: IOSApp.AppDetail;
+  additionalDatas?: IOSApp.AppDetail | null;
 }
 const props = defineProps<IProps>();
 const { data, additionalDatas } = toRefs(props);
 /** app Id */
 const id = data.value.id.attributes["im:id"];
 const detailData = computed(() => {
-  return additionalDatas.value.results.find((item) => `${item.trackId}` === id);
+  return additionalDatas.value?.results.find(
+    (item) => `${item.trackId}` === id
+  );
 });
 const rating = computed(() => {
   return detailData.value?.averageUserRating;
-})
+});
 const ratingCount = computed(() => {
   return detailData.value?.userRatingCount;
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +60,16 @@ const ratingCount = computed(() => {
   .info {
     display: flex;
     flex-direction: row;
+    .index {
+      width: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .text {
+        font-size: 28px;
+        color: #5b55558f;
+      }
+    }
     .logo {
       width: 128px;
       height: 128px;
@@ -61,6 +78,7 @@ const ratingCount = computed(() => {
     .base-info {
       margin-left: 16px;
       .recommend-item-title {
+        width: 520px;
         font-size: 32px;
         color: #000;
         font-weight: 400;
