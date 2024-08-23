@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  my-website:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8888:80
+    networks:
+      - common-network
+
+networks:
+  common-network:
+    driver: bridge
