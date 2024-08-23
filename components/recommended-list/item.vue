@@ -14,6 +14,9 @@
           <h2 class="recommend-item-sub-title">
             {{ data.category.attributes.label }}
           </h2>
+          <div v-if="rating" class="rating">
+            <UserRating :rating="rating" :rating-count="ratingCount" />
+          </div>
         </div>
       </div>
     </a>
@@ -23,8 +26,21 @@
 <script setup lang="ts">
 interface IProps {
   data: IOSApp.Entry;
+  additionalDatas: IOSApp.AppDetail;
 }
-defineProps<IProps>();
+const props = defineProps<IProps>();
+const { data, additionalDatas } = toRefs(props);
+/** app Id */
+const id = data.value.id.attributes["im:id"];
+const detailData = computed(() => {
+  return additionalDatas.value.results.find((item) => `${item.trackId}` === id);
+});
+const rating = computed(() => {
+  return detailData.value?.averageUserRating;
+})
+const ratingCount = computed(() => {
+  return detailData.value?.userRatingCount;
+})
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +67,7 @@ defineProps<IProps>();
       }
 
       .recommend-item-sub-title {
-        font-size:28px;
+        font-size: 28px;
         width: 128px;
         color: #5b55558f;
         font-weight: 400;
