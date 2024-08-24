@@ -80,7 +80,7 @@ const list = computed(() => {
     display: flex;
     column-gap: 32px;
     padding: 0 32px;
-    width: 750px;
+    // width: 750px;
     overflow-x: scroll;
     &::-webkit-scrollbar {
       display: none;

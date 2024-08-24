@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   modules: ["@vant/nuxt"],
   vant: {
     /** Options */
+    lazyload: true
   },
   /**
    * @see https://nuxt.com.cn/docs/api/composables/use-runtime-config#%E8%AE%BF%E9%97%AE%E8%BF%90%E8%A1%8C%E6%97%B6%E9%85%8D%E7%BD%AE

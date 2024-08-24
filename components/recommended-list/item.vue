@@ -78,7 +78,7 @@ const ratingCount = computed(() => {
     .base-info {
       margin-left: 16px;
       .recommend-item-title {
-        width: 520px;
+        width: 480px;
         font-size: 32px;
         color: #000;
         font-weight: 400;

@@ -107,7 +107,7 @@ const list = computed(() => {
   flex-direction: column;
   .recommended-list-item {
     &:nth-of-type(odd) {
-      ::v-deep .logo {
+      :deep(.logo) {
         border-radius: 0px;
       }
     }

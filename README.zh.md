@@ -102,7 +102,7 @@ npm i vant @vant/nuxt -D
 
 ## 已知问题
 
-vant 集成 nuxt 水合的警告 runtime-core.esm-bun….js?v=b1da173b:3632 Hydration completed but contains mismatches. <https://github.com/youzan/vant/issues/12548>
+vant 集成 nuxt，van-search会在服务器和客户端各渲染一次，两次渲染的 id 不同，会导致水合的警告 runtime-core.esm-bun….js?v=b1da173b:3632 Hydration completed but contains mismatches. <https://github.com/youzan/vant/issues/12548>
 
 ## 待添加
 
