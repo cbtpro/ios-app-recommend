@@ -1,19 +1,26 @@
+import { isDev } from "./constants/App";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    baseURL: '',
+    /** 修改默认 assets 目录，支持部署到 gh-pages：gh-pages -d dist */
+    buildAssetsDir: 'assets',
+  },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   postcss: {
     plugins: {
-      'postcss-pxtorem': {
+      "postcss-pxtorem": {
         rootValue({ file }: any) {
-          return file.indexOf('vant') !== -1 ? 37.5 : 100
+          return file.indexOf("vant") !== -1 ? 37.5 : 100;
         },
-        propList: ['*'],
+        propList: ["*"],
         exclude: /(node_module)/,
-        selectorBlackList: ['html', '.rem-ignore']
-      }  
-    }
-     },
+        selectorBlackList: ["html", ".rem-ignore"],
+      },
+    },
+  },
   /**
    * vant配置
    * @see https://github.com/vant-ui/vant-nuxt
@@ -28,7 +35,7 @@ export default defineNuxtConfig({
    */
   runtimeConfig: {
     // 私有密钥仅在服务器端可用
-    apiSecret: 'apiSecret',
+    apiSecret: "apiSecret",
 
     // 对客户端暴露的公共参数
     public: {
@@ -41,6 +48,6 @@ export default defineNuxtConfig({
         /** 获取苹果搜索 APP */
         appleLookupApsUrl: process.env.APPLE_LOOKUP_APPS_URL as string,
       },
-    }
-  }
+    },
+  },
 });

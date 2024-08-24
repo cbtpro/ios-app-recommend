@@ -1,5 +1,13 @@
 # IOS APP推荐
 
+## 预览
+
+- 手机扫码访问(需代理)
+
+  ![手机扫码访问(需代理)](./qr-code-vercel.png)
+
+预览图
+
 ## 开发环境
 
 - node v18
@@ -53,7 +61,7 @@ docker build --pull --rm -f "Dockerfile" -t ios-app-recommend:0.0.1 "."
 ### 启动容器
 
 ```sh
-docker run -d --name ios-app-recommend -p 8888:80 ios-app-recommend:0.0.1
+docker run -d --name ios-app-recommend -p 8888:3000 ios-app-recommend:0.0.1
 ```
 
 然后可以通过本机 ip 地址访问，可以通过手机扫描 ip 生成的地址访问。
