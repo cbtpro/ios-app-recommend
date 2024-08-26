@@ -1,7 +1,7 @@
 <template>
   <div class="recommended-list">
     <div
-      class="recommended-list-item"
+      class="recommended-list-item half-border-top"
       v-for="(item, index) in list"
       :key="item.id.label"
     >
@@ -79,12 +79,14 @@ watch(searchKey, (value, oldValue) => {
 
 <style lang="scss" scoped>
 .recommended-list {
-  padding: 32px 32px;
+  padding: 16px 0;
   // width: 750px;
   display: flex;
-  row-gap: 16px;
+  // row-gap: 16px;
   flex-direction: column;
   .recommended-list-item {
+    padding: 8px 16px;
+    position: relative;
     &:nth-of-type(odd) {
       :deep(.logo) {
         border-radius: 0px;

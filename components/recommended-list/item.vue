@@ -52,6 +52,7 @@ const ratingCount = computed(() => {
 
 <style lang="scss" scoped>
 .item {
+  padding: 12px 0;
   width: 686px;
   // height: 128px;
   display: flex;
@@ -60,6 +61,8 @@ const ratingCount = computed(() => {
   .info {
     display: flex;
     flex-direction: row;
+    display: flex;
+    align-items: center;
     .index {
       width: 64px;
       display: flex;
@@ -76,6 +79,9 @@ const ratingCount = computed(() => {
       border-radius: 25%;
     }
     .base-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       margin-left: 16px;
       .recommend-item-title {
         width: 480px;
