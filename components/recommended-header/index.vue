@@ -3,7 +3,7 @@
     <slot name="title">
       <div class="title">推荐</div>
     </slot>
-    <div class="recommend">
+    <div class="recommend half-border-bottom">
       <div class="recommend-item" v-for="item in list" :key="item.id.label">
         <Item :data="item" />
       </div>
@@ -56,11 +56,16 @@ watch(searchKey, (value, oldValue) => {
   }
 
   .recommend {
+    position: relative;
     display: flex;
     column-gap: 32px;
     padding: 0 32px;
     // width: 750px;
     overflow-x: scroll;
+    padding-bottom: 16px;
+    &::before {
+      border-color: #00000071;
+    }
     &::-webkit-scrollbar {
       display: none;
     }

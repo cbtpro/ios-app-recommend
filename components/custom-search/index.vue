@@ -32,6 +32,6 @@ watch(modelValue, (value, oldValue) => {
 
 const onSearchHandle = debounce((value: string) => {
   emit('update:modelValue', value)
-}, 800)
+}, 300)
 
 </script>

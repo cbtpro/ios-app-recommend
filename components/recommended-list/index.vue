@@ -1,7 +1,7 @@
 <template>
   <div class="recommended-list">
     <div
-      class="recommended-list-item half-border-top"
+      class="recommended-list-item half-border-bottom"
       v-for="(item, index) in list"
       :key="item.id.label"
     >
@@ -87,6 +87,11 @@ watch(searchKey, (value, oldValue) => {
   .recommended-list-item {
     padding: 8px 16px;
     position: relative;
+    &::before {
+      border-color: #00000071;
+      left: 16px;
+      width: calc(200% - 32px);
+    }
     &:nth-of-type(odd) {
       :deep(.logo) {
         border-radius: 0px;
