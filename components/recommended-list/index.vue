@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import useConfig from "@/utils/config";
+import { filterFn } from '@/utils/index'
 
 import Item from "./item.vue";
 
@@ -65,43 +66,21 @@ const {
 
 const searchKey = useState("searchKey", () => "");
 
-const list = computed(() => {
-  if (searchKey) {
-    return freeApps.value?.feed.entry.filter((item) => {
-      const {
-        /** 应用名称 */
-        "im:name": name,
-        /** 应用作者 */
-        "im:artist": artist,
-        /** 应用描述 */
-        summary,
-      } = item;
-      /** 转换小写后的应用名称 */
-      const localeName = name.label ? name.label.toLocaleLowerCase() : '';
-      /** 转换小写后的作者 */
-      const localArtist = artist.label ? artist.label.toLocaleLowerCase() : '';
-      /** 转化小写后的描述 */
-      const localSummary = summary.label ? summary.label.toLocaleLowerCase() : '';
-      /** 转换小写后的搜索关键词 */
-      const localeLowerCaseSearchKey = searchKey.value ? searchKey.value.toLocaleLowerCase() : '';
-      /** 是否匹配应用名称 */
-      const ifMatchName = localeName.indexOf(localeLowerCaseSearchKey) !== -1;
-      /** 是否匹配作者 */
-      const ifMatchArtist = localArtist.indexOf(localeLowerCaseSearchKey) !== -1;
-      /** 是否匹配描述 */
-      const ifMatchSummary =
-        localSummary.indexOf(localeLowerCaseSearchKey) !== -1;
-      return ifMatchName || ifMatchArtist || ifMatchSummary;
-    });
+const list = ref(freeApps.value?.feed.entry)
+
+watch(searchKey, (value, oldValue) => {
+  if (!value) {
+    list.value = freeApps.value?.feed.entry
+  } else if (value !== oldValue) {
+    list.value = freeApps.value ? filterFn(freeApps.value, value) : [];
   }
-  return freeApps.value?.feed.entry;
-});
+})
 </script>
 
 <style lang="scss" scoped>
 .recommended-list {
   padding: 32px 32px;
-  width: 750px;
+  // width: 750px;
   display: flex;
   row-gap: 16px;
   flex-direction: column;
