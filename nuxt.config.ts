@@ -1,11 +1,15 @@
 import { isDev } from "./constants/App";
 
+import process from 'node:process'
+
+const sw = process.env.SW === 'true'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: '',
+    baseURL: "",
     /** 修改默认 assets 目录，支持部署到 gh-pages：gh-pages -d dist */
-    buildAssetsDir: 'assets',
+    buildAssetsDir: "assets",
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -28,15 +32,56 @@ export default defineNuxtConfig({
    */
   modules: ["@vite-pwa/nuxt", "@vant/nuxt"],
   pwa: {
-    registerType: 'autoUpdate',
-    injectRegister: 'inline',
+    strategies: sw ? "injectManifest" : "generateSW",
+    srcDir: sw ? "service-worker" : undefined,
+    filename: sw ? "sw.ts" : undefined,
+    registerType: "autoUpdate",
+    manifest: {
+      name: "My Nuxt PWA",
+      short_name: "NuxtPWA",
+      description: "My awesome Nuxt 3 PWA!",
+      icons: [
+        {
+          src: "/icons/icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/icons/icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+      scope: "/",
+      start_url: "/",
+      orientation: "portrait-primary",
+    },
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      periodicSyncForUpdates: 3600,
+    },
     devOptions: {
       enabled: true,
+      suppressWarnings: true,
+      navigateFallback: "/",
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
     },
   },
   vant: {
     /** Options */
-    lazyload: true
+    lazyload: true,
   },
   /**
    * @see https://nuxt.com.cn/docs/api/composables/use-runtime-config#%E8%AE%BF%E9%97%AE%E8%BF%90%E8%A1%8C%E6%97%B6%E9%85%8D%E7%BD%AE
