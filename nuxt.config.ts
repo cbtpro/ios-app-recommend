@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   modules: ["@vite-pwa/nuxt", "@vant/nuxt"],
   pwa: {
     registerType: 'autoUpdate',
+    injectRegister: 'inline',
     devOptions: {
       enabled: true,
     },
