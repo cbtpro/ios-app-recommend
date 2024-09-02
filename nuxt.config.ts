@@ -1,4 +1,3 @@
-import { VitePWA } from 'vite-plugin-pwa';
 import { isDev } from "./constants/App";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -7,50 +6,6 @@ export default defineNuxtConfig({
     baseURL: '',
     /** 修改默认 assets 目录，支持部署到 gh-pages：gh-pages -d dist */
     buildAssetsDir: 'assets',
-  },
-  vite: {
-    plugins: [
-      VitePWA({
-        registerType: 'autoUpdate',
-        devOptions: {
-          enabled: false,
-        },
-        manifest: {
-          name: 'My Nuxt PWA',
-          short_name: 'NuxtPWA',
-          description: 'My awesome Nuxt 3 PWA!',
-          theme_color: '#ffffff',
-          icons: [
-            {
-              src: '/icons/icon-192x192.png',
-              sizes: '192x192',
-              type: 'image/png',
-            },
-            {
-              src: '/icons/icon-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-            },
-          ],
-        },
-        workbox: {
-          // Workbox 配置
-          runtimeCaching: [
-            {
-              urlPattern: /^https:\/\/ios-app-recommend\.vercel\.app$/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'ios-app-recommend-cache',
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 30, // 30天
-                },
-              },
-            },
-          ],
-        },
-      })
-    ],
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -71,7 +26,13 @@ export default defineNuxtConfig({
    * @see https://github.com/vant-ui/vant-nuxt
    * @see https://nuxt.com.cn/modules/vant
    */
-  modules: ["@vant/nuxt"],
+  modules: ["@vite-pwa/nuxt", "@vant/nuxt"],
+  pwa: {
+    registerType: 'autoUpdate',
+    devOptions: {
+      enabled: true,
+    },
+  },
   vant: {
     /** Options */
     lazyload: true

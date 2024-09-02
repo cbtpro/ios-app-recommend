@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@nuxt/postcss8": "^1.1.3",
+    "@vite-pwa/nuxt": "^0.10.1",
     "postcss": "^8.4.41",
     "vite-plugin-pwa": "^0.20.1"
   },
